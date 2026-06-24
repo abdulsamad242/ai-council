@@ -1,0 +1,47 @@
+{
+  "name": "ai-council",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start",
+    "debate": "tsx src/index.ts",
+    "test-skeptic": "tsx src/test-skeptic.ts",
+    "test-single-round": "tsx src/test-single-round.ts",
+    "test-full-debate": "tsx src/test-full-debate.ts",
+    "test-with-moderator": "tsx src/test-with-moderator.ts",
+    "test-credibility": "tsx src/test-credibility.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@langchain/core": "^1.2.0",
+    "@langchain/groq": "^1.3.0",
+    "@langchain/langgraph": "^1.4.4",
+    "@tailwindcss/postcss": "^4.3.1",
+    "@tavily/core": "^0.7.6",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.0.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "framer-motion": "^12.41.0",
+    "langchain": "^1.5.0",
+    "next": "^16.2.9",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-markdown": "^10.1.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.5.1",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^4.3.1"
+  }
+}

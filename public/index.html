@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Council</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Hero -->
+  <div id="hero">
+    <div class="hero-inner">
+      <div class="logo-mark">⚖</div>
+      <h1>AI Council</h1>
+      <p class="tagline">A self-assembling panel of domain experts debates any question — with real evidence, verified sources, and a moderator who decides when enough has been said.</p>
+      <form id="topic-form">
+        <div class="input-wrap">
+          <textarea
+            id="topic-input"
+            placeholder="Enter a topic or question for the council to debate…"
+            rows="2"
+          ></textarea>
+          <button type="submit" id="convene-btn">
+            <span class="btn-text">Convene Council</span>
+            <span class="btn-icon">→</span>
+          </button>
+        </div>
+        <div class="example-topics">
+          <span class="ex-label">Try:</span>
+          <button type="button" class="ex-chip" data-topic="Should social media platforms be liable for the content their users post?">Social media liability</button>
+          <button type="button" class="ex-chip" data-topic="Is universal basic income a viable solution to automation-driven unemployment?">Universal basic income</button>
+          <button type="button" class="ex-chip" data-topic="Should gene editing of human embryos be permitted for disease prevention?">Gene editing ethics</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Debate view (hidden until started) -->
+  <div id="debate-view" class="hidden">
+    <header class="debate-header">
+      <button id="new-debate-btn" class="back-btn">← New debate</button>
+      <div class="debate-topic-display" id="debate-topic-display"></div>
+      <div class="status-chip" id="status-chip">Assembling council…</div>
+    </header>
+
+    <!-- Council cards -->
+    <section id="council-section" class="council-section hidden">
+      <div class="section-label">The Council</div>
+      <div id="persona-cards" class="persona-cards"></div>
+    </section>
+
+    <!-- Transcript -->
+    <main id="transcript" class="transcript"></main>
+
+    <!-- Verdict -->
+    <section id="verdict-section" class="verdict-section hidden">
+      <div class="verdict-header">
+        <span class="verdict-icon">⚖</span>
+        <span>Moderator's Verdict</span>
+      </div>
+      <div id="verdict-body" class="verdict-body"></div>
+    </section>
+
+    <div id="done-banner" class="done-banner hidden">
+      Council concluded · <span id="done-stats"></span>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
