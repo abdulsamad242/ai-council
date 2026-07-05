@@ -1,10 +1,31 @@
-# The Council
+# 🏛️ The Council
 
-An AI debate system that assembles a panel of domain experts for any question, conducts a multi-round evidence-grounded debate, and delivers a reasoned verdict — with a streaming web UI built in Next.js.
+An autonomous multi-agent debate system that assembles domain experts, grounds every argument in evidence, and decides for itself when a debate has reached a meaningful conclusion.
+
+> Built to explore whether AI systems can reach better decisions through structured, evidence-grounded debate instead of single-agent reasoning.
 
 ---
 
-## What it does
+## 🚀 Highlights
+
+- 🧠 Dynamically assembles domain experts
+- ⚖️ Multi-round evidence-grounded debate
+- 🌐 Live web search with Tavily
+- 📡 Real-time streaming UI
+- 👨‍⚖️ Self-terminating moderator
+- 💬 Server-Sent Events architecture
+
+## 🎥 Demo
+
+<img width="400" height="179" alt="Screen Recording 2026-07-05 133443" src="https://github.com/user-attachments/assets/4d19575d-a6a3-4825-801e-622b3e953a6d" />
+
+## 🎯 Why I Built This
+
+Most multi-agent demos online are little more than multiple LLM calls running in sequence. I wanted to explore what happens when each agent has a clear responsibility, access to external evidence, and is forced to directly engage with the arguments made by others instead of simply generating another opinion.
+
+This project was my way of experimenting with AI systems that reason through disagreement, evaluate evidence, and decide for themselves when a discussion has reached a meaningful conclusion.
+
+## 📖 Overview
 
 You give it a question. It assembles three domain experts appropriate to that specific topic — not generic archetypes, but real roles like *Labor Economist*, *Environmental Lawyer*, *Risk Assessment Engineer*. They debate across multiple rounds, each expert searching for and citing real sources, directly challenging each other's specific claims. A moderator watches the transcript and decides when the debate has been genuinely exhausted — not after a fixed number of rounds, but when it determines another round would produce no new ground.
 
@@ -12,7 +33,7 @@ The whole thing streams live to the browser as it happens.
 
 ---
 
-## How it works
+## ⚙️ Architecture
 
 ### Dynamic council generation
 Before each debate, an LLM reads the topic and assembles a council of three domain experts whose fields are most relevant to that specific question. A debate about nuclear energy gets an energy economist, an environmental lawyer, and a nuclear engineer. A debate about AI termination gets a labor economist, an employment law specialist, and an HCI researcher. The council is different every time.
@@ -32,8 +53,22 @@ After each round (minimum 2), the moderator reads the full transcript and is ask
 The backend runs the debate and emits Server-Sent Events for every step: council assembled, expert searching, expert composing, statement ready, moderator evaluating, verdict. The frontend consumes these in real time — council cards appear and activate as each expert speaks, statements flow in as they're generated, moderator decisions appear inline, and the verdict renders as formatted markdown.
 
 ---
+## ✅ Results
 
-## Tech stack
+- Dynamically creates a different expert panel for every topic.
+- Experts challenge specific claims instead of generating isolated opinions.
+- Debates terminate automatically when no meaningful unresolved questions remain.
+- Streams every stage of the reasoning process live to the bro-wser.
+
+## 🏗️ Production Considerations
+
+- **Retry with backoff** for all external API calls to handle transient failures.
+- **Streaming architecture** using Server-Sent Events keeps users informed throughout long-running debates instead of waiting for a final response.
+- **Evidence isolation** separates fact extraction from argument generation to reduce hallucinations and keep reasoning grounded.
+- **Dynamic council generation** ensures the system adapts to different domains instead of relying on hardcoded personas.
+- **Self-terminating debate loop** prevents unnecessary LLM calls while allowing additional rounds when meaningful disagreements remain.
+
+## 🛠️ Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -46,7 +81,7 @@ The backend runs the debate and emits Server-Sent Events for every step: council
 
 ---
 
-## Setup
+## ⚡ Setup
 
 **Prerequisites:** Node.js 18+, a [Groq API key](https://console.groq.com), a [Tavily API key](https://tavily.com)
 
@@ -76,7 +111,7 @@ npm run debate -- "Is universal basic income a viable solution to automation-dri
 
 ---
 
-## Project structure
+## 📂 Project Structure
 
 ```
 src/
@@ -107,7 +142,7 @@ components/
 
 ---
 
-## Design decisions
+## 🤔 Design Decisions
 
 **Why Groq?** Speed. Debates involve many sequential LLM calls (search planning, evidence verification, statement generation, moderator evaluation). Groq's inference speed makes the experience feel live rather than like waiting for a batch job.
 
