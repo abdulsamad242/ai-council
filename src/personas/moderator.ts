@@ -1,11 +1,11 @@
 import "dotenv/config";
-import { ChatGroq } from "@langchain/groq";
+import { ChatOpenAI } from "@langchain/openai";
 import type { CouncilState } from "../types.js";
 
-const llm = new ChatGroq({
-  model: "llama-3.3-70b-versatile",
-  apiKey: process.env.GROQ_API_KEY,
-  temperature: 0.2, // lower than personas - moderator should be measured, not opinionated
+const llm = new ChatOpenAI({
+  model: "gpt-4o-mini",
+  apiKey: process.env.OPENAI_API_KEY,
+  temperature: 0.2,
 });
 
 export async function moderatorShouldContinue(state: CouncilState): Promise<{ continue: boolean; reason: string }> {

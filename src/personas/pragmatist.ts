@@ -1,12 +1,12 @@
 import "dotenv/config";
-import { ChatGroq } from "@langchain/groq";
+import { ChatOpenAI } from "@langchain/openai";
 import type { CouncilState, Finding } from "../types.js";
 import { searchForEvidence } from "../utils/search.js";
 import { withRetry } from "../utils/retry.js";
 
-const llm = new ChatGroq({
-  model: "llama-3.3-70b-versatile",
-  apiKey: process.env.GROQ_API_KEY,
+const llm = new ChatOpenAI({
+  model: "gpt-4o-mini",
+  apiKey: process.env.OPENAI_API_KEY,
   temperature: 0.7,
 });
 
