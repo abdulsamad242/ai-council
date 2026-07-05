@@ -58,7 +58,7 @@ The backend runs the debate and emits Server-Sent Events for every step: council
 - Dynamically creates a different expert panel for every topic.
 - Experts challenge specific claims instead of generating isolated opinions.
 - Debates terminate automatically when no meaningful unresolved questions remain.
-- Streams every stage of the reasoning process live to the bro-wser.
+- Streams every stage of the reasoning process live to the browser.
 
 ## 🏗️ Production Considerations
 
@@ -74,7 +74,7 @@ The backend runs the debate and emits Server-Sent Events for every step: council
 |-------|-----------|
 | Web framework | Next.js 16 (App Router) |
 | UI animations | Framer Motion |
-| LLM | Llama 3.3 70B via Groq |
+| LLM | GPT-4o Mini via OpenAI |
 | Web search | Tavily |
 | Streaming | Server-Sent Events (SSE) |
 | Language | TypeScript throughout |
@@ -83,7 +83,7 @@ The backend runs the debate and emits Server-Sent Events for every step: council
 
 ## ⚡ Setup
 
-**Prerequisites:** Node.js 18+, a [Groq API key](https://console.groq.com), a [Tavily API key](https://tavily.com)
+**Prerequisites:** Node.js 18+, an [OpenAI API key](https://platform.openai.com), a [Tavily API key](https://tavily.com)
 
 ```bash
 git clone https://github.com/your-username/ai-council
@@ -94,7 +94,7 @@ npm install
 Create a `.env` file:
 
 ```env
-GROQ_API_KEY=your_groq_key_here
+OPENAI_API_KEY=your_openai_key_here
 TAVILY_API_KEY=your_tavily_key_here
 ```
 
@@ -144,7 +144,7 @@ components/
 
 ## 🤔 Design Decisions
 
-**Why Groq?** Speed. Debates involve many sequential LLM calls (search planning, evidence verification, statement generation, moderator evaluation). Groq's inference speed makes the experience feel live rather than like waiting for a batch job.
+**Why GPT-4o Mini?** It hits the right balance between speed and reasoning quality for this use case. Debates involve many sequential LLM calls per round — search planning, evidence verification, statement generation, moderator evaluation — so a fast, capable model keeps the experience feeling live rather than like waiting for a batch job.
 
 **Why SSE over WebSockets?** The debate is entirely one-directional — server to client. SSE is simpler, works over standard HTTP, and requires no additional infrastructure.
 
